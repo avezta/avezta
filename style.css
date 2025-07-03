@@ -1,121 +1,27 @@
-/* General Reset */
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Stardos Stencil', sans-serif;
   background-color: #000;
   color: #fff;
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
 }
 
-/* Header & Navigation */
-header {
-  background-color: #000;
-  padding: 20px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
+h1, h2, h3 {
+  font-family: 'Stardos Stencil', cursive;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  transition: all 0.3s ease;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0 15px;
-  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-  display: inline-block;
-  padding: 8px 10px;
-}
-
-nav a:hover {
-  color: orange;
-  transform: scale(1.1);
-  text-shadow: 0 0 8px orange;
-}
-
-nav a.active {
-  color: orange;
-  text-shadow: 0 0 10px orange;
-  transform: scale(1.12);
-  border-bottom: 2px solid orange;
-}
-
-/* Hamburger Menu */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-.menu-toggle div {
-  width: 25px;
-  height: 3px;
-  background: orange;
-  margin: 4px 0;
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background-color: #000;
-    width: 100%;
-    text-align: center;
-  }
-
-  nav.open {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-/* Hero Section */
-.hero {
-  background: url('avezta-bg.jpg') no-repeat center center/cover;
-  padding: 150px 20px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  color: white;
-  font-family: 'Black Ops One', cursive;
-  animation: fadeInDown 1s ease-out;
-}
-
-.hero p {
-  font-size: 1.3rem;
-  margin-top: 10px;
-  color: orange;
-  animation: fadeInUp 1.5s ease-out;
-}
-
-/* Section Styling */
 section {
   padding: 80px 20px;
   text-align: center;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
+  transform: translateY(40px);
+  transition: all 1s ease-in-out;
 }
 
 section.reveal {
@@ -124,71 +30,180 @@ section.reveal {
 }
 
 .section-title {
-  font-family: 'Black Ops One', cursive;
-  font-size: 2.2rem;
   color: orange;
-  margin-bottom: 30px;
-  transition: color 0.3s ease;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+  animation: fadeInTitle 1.2s ease forwards;
 }
 
-.section-title:hover {
-  color: white;
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Packages Cards */
+/* Header & Navigation */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+  padding: 20px 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -5px;
+  left: 0;
+  background-color: orange;
+  transition: 0.4s ease-in-out;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+nav a:hover,
+nav a.active {
+  color: orange;
+  transform: scale(1.1);
+  animation: pulse 0.4s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: url('gym-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: orange;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+/* Packages Section */
 .packages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  justify-items: center;
-  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .card {
-  background-color: #111;
-  padding: 25px;
-  border: 1px solid orange;
+  background: #111;
+  border: 2px solid orange;
+  padding: 20px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 350px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  margin: 20px;
+  width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  animation: cardFadeIn 0.8s ease forwards;
+  opacity: 0;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 0 20px orange;
+  box-shadow: 0 0 15px orange;
+}
+
+.card.reveal {
+  opacity: 1;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+/* Contact */
+#contact a:hover {
+  text-decoration: underline;
 }
 
 /* Footer */
 footer {
   background-color: #111;
   text-align: center;
-  padding: 25px;
-  color: orange;
+  padding: 20px 0;
   font-size: 0.9rem;
-  border-top: 1px solid #333;
-  margin-top: 20px;
+  color: #aaa;
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .card {
+    width: 90%;
   }
 }
