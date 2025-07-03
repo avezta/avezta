@@ -1,66 +1,33 @@
-/* Reset and Base Styles */
-* {
+/* Base styling */
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'Stardos Stencil', cursive;
+  background: #000;
+  color: #fff;
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: #000;
-  color: #fff;
-  font-family: 'Montserrat', sans-serif;
-}
-
-h1, h2, h3 {
-  font-family: 'Stardos Stencil', cursive;
-}
-
-section {
-  padding: 80px 20px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease-in-out;
-}
-
-section.reveal {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section-title {
+a {
   color: orange;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  text-align: center;
-  width: 100%;
-  animation: fadeInTitle 1.2s ease forwards;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-@keyframes fadeInTitle {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+a:hover {
+  color: #fff;
 }
 
-/* Header & Navigation */
+/* Header and navigation */
 header {
   position: sticky;
   top: 0;
-  width: 100%;
-  background-color: #000;
-  padding: 20px 0;
-  z-index: 1000;
+  z-index: 999;
+  background: #000;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease;
+  padding: 15px 30px;
+  border-bottom: 1px solid orange;
 }
 
 nav {
@@ -69,88 +36,144 @@ nav {
 }
 
 nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-family: 'Black Ops One', cursive;
+  color: orange;
+  text-transform: uppercase;
+  font-size: 16px;
   position: relative;
-  transition: all 0.3s ease;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: -5px;
-  left: 0;
-  background-color: orange;
-  transition: 0.4s ease-in-out;
-}
-
-nav a:hover::after,
-nav a.active::after {
-  width: 100%;
+  transition: color 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-  color: orange;
-  transform: scale(1.1);
-  animation: pulse 0.4s ease;
+  color: white;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 100%;
+  background: orange;
+  animation: slide-in 0.4s ease-in-out;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  z-index: 1001;
+}
+
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background: orange;
+  transition: 0.4s;
+}
+
+.menu-toggle.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.95);
+    height: 100%;
+    width: 250px;
+    padding-top: 60px;
+    transition: right 0.3s ease;
+  }
+
+  nav.open {
+    right: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .overlay.show {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+  }
 }
 
 /* Hero Section */
 .hero {
-  height: 100vh;
-  background: url('gym-bg.jpg') no-repeat center center/cover;
+  background: url('avezta-bg.jpg') no-repeat center center/cover;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  color: orange;
-  margin-bottom: 20px;
+  font-family: 'Black Ops One', cursive;
+  font-size: 48px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: 20px;
+  font-family: 'Stardos Stencil', cursive;
 }
 
-/* Packages Section */
+/* Section titles */
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-family: 'Black Ops One', cursive;
+  margin: 40px 0 20px;
+}
+
+/* Cards */
 .packages {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  padding: 20px;
 }
 
 .card {
   background: #111;
   border: 2px solid orange;
   padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
-  width: 280px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: inline-block;
-  animation: cardFadeIn 0.8s ease forwards;
-  opacity: 0;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  font-family: 'Stardos Stencil', cursive;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -158,112 +181,32 @@ nav a.active {
   box-shadow: 0 0 15px orange;
 }
 
-.card.reveal {
-  opacity: 1;
-}
-
-@keyframes cardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.card h3 {
-  font-size: 1.4rem;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 1rem;
-}
-
-/* Contact */
-#contact a:hover {
-  text-decoration: underline;
-}
-
 /* Footer */
 footer {
-  background-color: #111;
   text-align: center;
-  padding: 20px 0;
-  font-size: 0.9rem;
-  color: #aaa;
+  padding: 20px;
+  border-top: 1px solid orange;
+  background: #000;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
+/* Reveal animation */
+section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide in underline for nav */
+@keyframes slide-in {
+  from {
+    width: 0;
   }
-  .card {
-    width: 90%;
-  }
-}
-/* Hamburger Menu */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-  position: absolute;
-  left: 20px;
-  top: 25px;
-  z-index: 1100;
-}
-
-.menu-toggle div {
-  width: 25px;
-  height: 3px;
-  background-color: orange;
-  transition: all 0.3s ease;
-}
-
-/* Mobile Navigation */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-
-  nav {
-    position: absolute;
-    top: 70px;
-    left: 0;
+  to {
     width: 100%;
-    background-color: #000;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 0;
-    display: none;
-    transition: all 0.3s ease;
-  }
-
-  nav.open {
-    display: flex;
-    animation: slideDown 0.3s ease forwards;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  header {
-    justify-content: flex-start;
-    padding: 20px;
   }
 }
