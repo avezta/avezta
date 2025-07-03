@@ -4,22 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AVEZTA Gym</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:wght@400;700&family=Orbitron:wght@700&family=Stardos+Stencil&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:wght@400;700&family=Orbitron:wght@700&family=Stardos+Stencil&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
   <div class="overlay" id="overlay"></div>
 
   <header>
-    <div class="menu-toggle" id="menuToggle">
+    <div class="menu-toggle" id="menu-toggle">
       <div></div>
       <div></div>
       <div></div>
     </div>
-    <nav id="navbar">
+    <nav id="nav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#packages">Packages</a>
@@ -32,7 +32,7 @@
     <p>Unleash your potential</p>
   </section>
 
-  <section id="about">
+  <section id="about" class="reveal">
     <h2 class="section-title">About Us</h2>
     <p style="max-width: 800px; margin: auto; text-align: center;">
       AVEZTA Gym is proudly and purely dedicated to the brave men and women of the Indian Police Forces, Fire & Rescue Services, and Armed Forces. Founded on January 15, 2023, by a team of ex-army veterans, the gym stands as a tribute to the spirit of discipline, resilience, and service. Our mission is to provide a space where commitment to fitness meets the legacy of national service. To all who have served — we salute you.
@@ -76,62 +76,68 @@
     </p>
   </section>
 
-  <a href="https://wa.me/918848176988" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-    💬
-  </a>
-
   <footer>
     &copy; 2025 AVEZTA INDIA FITNESS. All rights reserved.
   </footer>
 
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/918848176988" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <img src="whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+  </a>
+
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navbar = document.getElementById('navbar');
-    const overlay = document.getElementById('overlay');
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("nav");
+    const overlay = document.getElementById("overlay");
+    const menuLinks = nav.querySelectorAll("a");
 
-    menuToggle.addEventListener('click', () => {
-      navbar.classList.toggle('open');
-      menuToggle.classList.toggle('open');
-      overlay.classList.toggle('show');
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("open");
+      nav.classList.toggle("open");
+      overlay.classList.toggle("show");
     });
 
-    overlay.addEventListener('click', () => {
-      navbar.classList.remove('open');
-      menuToggle.classList.remove('open');
-      overlay.classList.remove('show');
+    overlay.addEventListener("click", () => {
+      toggle.classList.remove("open");
+      nav.classList.remove("open");
+      overlay.classList.remove("show");
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuLinks = document.querySelectorAll('nav a');
+    menuLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        toggle.classList.remove("open");
+        nav.classList.remove("open");
+        overlay.classList.remove("show");
+      });
+    });
 
-      window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          const sectionHeight = section.clientHeight;
-          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-          }
-        });
+    window.addEventListener("scroll", () => {
+      const sections = document.querySelectorAll("section");
+      const scrollY = window.pageYOffset;
 
-        menuLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href').includes(current)) {
-            link.classList.add('active');
-          }
-        });
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute("id");
 
-        sections.forEach((sec, index) => {
-          const secTop = sec.getBoundingClientRect().top;
-          const winHeight = window.innerHeight;
-          if (secTop < winHeight - 100) {
-            setTimeout(() => sec.classList.add('reveal'), index * 100);
-          }
-        });
+        if (scrollY >= top && scrollY < top + height) {
+          document.querySelectorAll("nav a").forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(id)) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+
+      sections.forEach((sec, index) => {
+        const secTop = sec.getBoundingClientRect().top;
+        const winHeight = window.innerHeight;
+        if (secTop < winHeight - 100) {
+          setTimeout(() => sec.classList.add("reveal"), index * 150);
+        }
       });
     });
   </script>
-
 </body>
 </html>
