@@ -31,7 +31,7 @@
         const sections = document.querySelectorAll('section');
         let current = '';
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 120;
+          const sectionTop = section.offsetTop - 140;
           const sectionHeight = section.clientHeight;
           if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
@@ -86,26 +86,28 @@
   </section>
 
   <section id="packages" class="packages">
-    <h2 class="section-title">Our Packages</h2>
-    <div class="card">
-      <h3>3 Months Package</h3>
-      <p>Rs.3500</p>
-    </div>
-    <div class="card">
-      <h3>6 Months Package</h3>
-      <p>Rs.5999</p>
-    </div>
-    <div class="card">
-      <h3>12 Months Package</h3>
-      <p>Rs.9999</p>
-    </div>
-    <div class="card">
-      <h3>Personal Training</h3>
-      <p>For more on personal training packages please contact the office.</p>
-    </div>
-    <div class="card">
-      <h3>Boxing</h3>
-      <p>For more details on Cuban Style Boxing training packages please contact the office.</p>
+    <h2 class="section-title" style="text-align: center;">Our Packages</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>3 Months Package</h3>
+        <p>Rs.3500</p>
+      </div>
+      <div class="card">
+        <h3>6 Months Package</h3>
+        <p>Rs.5999</p>
+      </div>
+      <div class="card">
+        <h3>12 Months Package</h3>
+        <p>Rs.9999</p>
+      </div>
+      <div class="card">
+        <h3>Personal Training</h3>
+        <p>For more on personal training packages please contact the office.</p>
+      </div>
+      <div class="card">
+        <h3>Boxing</h3>
+        <p>For more details on Cuban Style Boxing training packages please contact the office.</p>
+      </div>
     </div>
   </section>
 
