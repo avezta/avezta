@@ -1,81 +1,59 @@
-/* Base styling */
+/* Base styles */
 body {
   margin: 0;
-  font-family: 'Stardos Stencil', cursive;
-  background: #000;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #000;
   color: #fff;
   scroll-behavior: smooth;
 }
 
-a {
-  color: orange;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #fff;
-}
-
-/* Header and navigation */
 header {
   position: sticky;
   top: 0;
+  background-color: #000;
   z-index: 999;
-  background: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 10px 30px;
   border-bottom: 1px solid orange;
 }
 
 nav {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 nav a {
-  font-family: 'Black Ops One', cursive;
-  color: orange;
-  text-transform: uppercase;
-  font-size: 16px;
-  position: relative;
-  transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 0.3s;
 }
 
 nav a:hover,
 nav a.active {
-  color: white;
+  border-bottom: 3px solid orange;
 }
 
-nav a.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  height: 2px;
-  width: 100%;
-  background: orange;
-  animation: slide-in 0.4s ease-in-out;
-}
-
-/* Hamburger menu */
 .menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  gap: 6px;
-  z-index: 1001;
 }
 
 .menu-toggle div {
   width: 25px;
   height: 3px;
   background: orange;
+  margin: 4px 0;
   transition: 0.4s;
 }
 
+/* Hamburger animation */
 .menu-toggle.open div:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -85,20 +63,49 @@ nav a.active::after {
 }
 
 .menu-toggle.open div:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile nav */
+/* Mobile menu styles */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+.overlay.show {
+  display: block;
+}
+
+nav.open {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background-color: #000;
+  flex-direction: column;
+  padding: 100px 40px;
+  gap: 40px;
+  transform: translateX(0%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
     position: fixed;
     right: -100%;
     top: 0;
-    background: rgba(0, 0, 0, 0.95);
-    height: 100%;
-    width: 250px;
-    padding-top: 60px;
+    height: 100vh;
+    width: 70%;
+    flex-direction: column;
+    background: #000;
+    padding: 100px 20px;
     transition: right 0.3s ease;
   }
 
@@ -109,91 +116,14 @@ nav a.active::after {
   .menu-toggle {
     display: flex;
   }
-
-  .overlay {
-    display: none;
-  }
-
-  .overlay.show {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-  }
 }
 
-/* Hero Section */
-.hero {
-  background: url('avezta-bg.jpg') no-repeat center center/cover;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.hero h1 {
-  font-family: 'Black Ops One', cursive;
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 20px;
-  font-family: 'Stardos Stencil', cursive;
-}
-
-/* Section titles */
-.section-title {
-  text-align: center;
-  font-size: 36px;
-  font-family: 'Black Ops One', cursive;
-  margin: 40px 0 20px;
-}
-
-/* Cards */
-.packages {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.card {
-  background: #111;
-  border: 2px solid orange;
-  padding: 20px;
-  border-radius: 8px;
-  width: 250px;
-  text-align: center;
-  font-family: 'Stardos Stencil', cursive;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 15px orange;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid orange;
-  background: #000;
-}
-
-/* Reveal animation */
+/* Sections */
 section {
+  padding: 100px 20px;
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.6s ease;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
 section.reveal {
@@ -201,16 +131,83 @@ section.reveal {
   transform: translateY(0);
 }
 
-/* Slide in underline for nav */
-@keyframes slide-in {
+.hero {
+  text-align: center;
+  padding-top: 140px;
+}
+
+.hero h1 {
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: orange;
+}
+
+.section-title {
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.card {
+  background-color: #111;
+  border: 2px solid orange;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px orange;
+}
+
+.card h3 {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 10px;
+  color: orange;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Animations */
+@keyframes fadeInUp {
   from {
-    width: 0;
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    width: 100%;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-/* Prevent section titles from going under sticky header */
-section {
-  scroll-margin-top: 100px;
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid orange;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  color: #ccc;
 }
