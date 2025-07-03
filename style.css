@@ -1,150 +1,116 @@
-/* Base styles */
+/* Base styling */
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: black;
+  background: black;
   color: white;
-  scroll-behavior: smooth;
 }
 
-/* Header & Navigation */
+/* Header and navigation */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: black;
-  padding: 10px 20px;
-  position: fixed;
-  width: 100%;
+  background-color: #000;
+  padding: 10px 0;
+  position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #222;
 }
 
 nav {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 2rem;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
+  font-size: 1.1rem;
 }
 
-nav a:hover,
-nav a.active {
+nav a.active,
+nav a:hover {
   color: orange;
 }
 
-/* Mobile Menu */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.menu-toggle div {
-  width: 25px;
-  height: 3px;
-  background-color: white;
-  margin: 4px 0;
-}
-
-@media (max-width: 768px) {
-  nav {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: black;
-    flex-direction: column;
-    align-items: center;
-    display: none;
-  }
-
-  nav.open {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-}
-
-/* Hero Section */
+/* Hero section */
 .hero {
-  padding: 100px 20px 60px;
   text-align: center;
-  background-image: url('avezta-bg.jpg');
-  background-size: cover;
-  background-position: center;
+  padding: 100px 20px;
 }
 
 .hero h1 {
+  font-size: 3rem;
   font-family: 'Black Ops One', sans-serif;
-  font-size: 48px;
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: 1.5rem;
   color: #ccc;
 }
 
 /* Section titles */
 .section-title {
   font-family: 'Orbitron', sans-serif;
-  text-align: center;
-  font-size: 32px;
-  margin: 60px 0 20px;
   color: orange;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
-/* Packages Section */
+/* Packages section */
 .packages {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  text-align: center;
+  padding: 60px 20px;
 }
 
 .card {
-  background-color: #111;
-  border: 1px solid #333;
+  display: inline-block;
+  background: #1a1a1a;
+  color: white;
   padding: 20px;
-  width: 250px;
-  border-radius: 10px;
-  text-align: center;
-  transition: transform 0.3s;
+  margin: 15px;
+  border-radius: 12px;
+  width: 220px;
+  vertical-align: top;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
 }
 
-.card:hover {
-  transform: scale(1.05);
-  border-color: orange;
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: orange;
+}
+
+/* Contact section */
+#contact {
+  padding: 60px 20px;
 }
 
 /* Footer */
 footer {
-  background-color: #111;
-  color: #888;
   text-align: center;
   padding: 20px;
-  margin-top: 40px;
-  font-size: 14px;
+  background-color: #111;
+  font-size: 0.9rem;
+  color: #999;
 }
 
-/* Reveal Animation */
+/* Reveal animations */
 section {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(40px);
+  transition: all 0.6s ease-in-out;
 }
 
 section.reveal {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Mobile menu toggle (if you expand it later) */
+.menu-toggle {
+  display: none;
 }
