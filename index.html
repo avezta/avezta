@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVEZTA Gym</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Stardos+Stencil&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:wght@400;700&family=Orbitron:wght@700&family=Stardos+Stencil&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const menuLinks = document.querySelectorAll('nav a');
       const nav = document.querySelector('nav');
       const toggle = document.querySelector('.menu-toggle');
+      const overlay = document.querySelector('.overlay');
 
       toggle.addEventListener('click', () => {
         nav.classList.toggle('open');
+        toggle.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+
+      overlay.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.classList.remove('open');
+        overlay.classList.remove('show');
       });
 
       window.addEventListener('scroll', () => {
@@ -43,19 +52,13 @@
             setTimeout(() => sec.classList.add('reveal'), index * 100);
           }
         });
-
-        document.querySelectorAll('.card').forEach((card, index) => {
-          const cardTop = card.getBoundingClientRect().top;
-          const winHeight = window.innerHeight;
-          if (cardTop < winHeight - 100) {
-            setTimeout(() => card.classList.add('reveal'), index * 150);
-          }
-        });
       });
     });
   </script>
 </head>
 <body>
+  <div class="overlay"></div>
+
   <header>
     <div class="menu-toggle">
       <div></div>
@@ -84,27 +87,25 @@
 
   <section id="packages" class="packages">
     <h2 class="section-title">Our Packages</h2>
-    <div class="card-container">
-      <div class="card">
-        <h3>3 Months Package</h3>
-        <p>Rs.3500</p>
-      </div>
-      <div class="card">
-        <h3>6 Months Package</h3>
-        <p>Rs.5999</p>
-      </div>
-      <div class="card">
-        <h3>12 Months Package</h3>
-        <p>Rs.9999</p>
-      </div>
-      <div class="card">
-        <h3>Personal Training</h3>
-        <p>For more on personal training packages please contact the office.</p>
-      </div>
-      <div class="card">
-        <h3>Boxing</h3>
-        <p>For more details on Cuban Style Boxing training packages please contact the office.</p>
-      </div>
+    <div class="card">
+      <h3>3 Months Package</h3>
+      <p>Rs.3500</p>
+    </div>
+    <div class="card">
+      <h3>6 Months Package</h3>
+      <p>Rs.5999</p>
+    </div>
+    <div class="card">
+      <h3>12 Months Package</h3>
+      <p>Rs.9999</p>
+    </div>
+    <div class="card">
+      <h3>Personal Training</h3>
+      <p>For more on personal training packages please contact the office.</p>
+    </div>
+    <div class="card">
+      <h3>Boxing</h3>
+      <p>For more details on Cuban Style Boxing training packages please contact the office.</p>
     </div>
   </section>
 
