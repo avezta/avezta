@@ -27,6 +27,14 @@
         overlay.classList.remove('show');
       });
 
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('open');
+          toggle.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      });
+
       window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('section');
         let current = '';
@@ -79,7 +87,7 @@
   </section>
 
   <section id="about">
-    <h2 class="section-title">About Us</h2>
+    <h2 class="section-title" style="text-align: center;">About Us</h2>
     <p style="max-width: 800px; margin: auto; text-align: center;">
       AVEZTA Gym is proudly and purely dedicated to the brave men and women of the Indian Police Forces, Fire & Rescue Services, and Armed Forces. Founded on January 15, 2023, by a team of ex-army veterans, the gym stands as a tribute to the spirit of discipline, resilience, and service. Our mission is to provide a space where commitment to fitness meets the legacy of national service. To all who have served — we salute you.
     </p>
