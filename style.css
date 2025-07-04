@@ -280,10 +280,10 @@ section.reveal {
   background-color: #e69500;
 }
 html {
-  scroll-padding-top: 100px;
+  scroll-padding-top: 120px;
   scroll-behavior: smooth;
 }
 
 #packages {
-  padding-top: 40px; /* Optional if extra offset needed */
+  padding-top: 20px; /* Optional if extra offset needed */
 }
