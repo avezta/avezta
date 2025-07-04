@@ -280,7 +280,7 @@ section.reveal {
   background-color: #e69500;
 }
 html {
-  scroll-padding-top: 120px;
+  scroll-padding-top: 80px;
   scroll-behavior: smooth;
 }
 
