@@ -237,8 +237,9 @@ section.reveal {
   flex-direction: column;
   gap: 15px;
   max-width: 500px;
-  margin: 30px auto 0;
-  background: none !important; /* Fully remove background */
+  margin: 30px auto; /* Center horizontally */
+  align-items: center;
+  background: none !important;
   padding: 0;
   box-shadow: none;
 }
@@ -246,7 +247,7 @@ section.reveal {
 .contact-form input,
 .contact-form textarea,
 .contact-form button {
-  width: 100%;
+  width: 100%; /* Keeps elements full width within the centered form */
   background: #111;
   border: 1px solid #555;
   color: white;
