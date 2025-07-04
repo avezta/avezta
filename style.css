@@ -180,7 +180,7 @@ section.reveal {
   z-index: 1001;
   background: #FFA500;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   display: flex;
   justify-content: center;
   align-items: center;
